@@ -2,50 +2,50 @@ import 'package:eato/pallete.dart';
 import 'package:flutter/material.dart';
 import 'package:eato/screens/Restaurant1.dart';
 
-class Indian_categories extends StatefulWidget {
+class Chinese_categories extends StatefulWidget {
   @override
-  _Indian_categoriesState createState() => _Indian_categoriesState();
+  _Chinese_categoriesState createState() => _Chinese_categoriesState();
 }
 
-class _Indian_categoriesState extends State<Indian_categories> {
+class _Chinese_categoriesState extends State<Chinese_categories> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: SingleChildScrollView(
 
-       child: Container(
-          height: 900,
-          width: double.infinity,
-          child: Column(
-            children: <Widget>[
-              BestFoodTitle(),
-              Expanded(
-                child: BestFoodList(),
-              ),
-              SizedBox(
-                height: 70,
-              )
-            ],
+          child: Container(
+            height: 900,
+            width: double.infinity,
+            child: Column(
+              children: <Widget>[
+                BestFoodTitle3(),
+                Expanded(
+                  child: BestFoodList3(),
+                ),
+                SizedBox(
+                  height: 70,
+                )
+              ],
+            ),
           ),
-        ),
-    )
+        )
 
     );
   }
 }
 
-class BestFoodTitle extends StatelessWidget {
+class BestFoodTitle3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(left: 10, right: 10, top: 60, bottom: 5),
-        child:
-          Text(
-            "Restaurants delivering Indian dishes...",
-            style: TextStyle(
-                fontSize: 25,
-                color: Color(0xFF3a3a3b),
-                fontWeight: FontWeight.w300),
+      child:
+      Text(
+        "Restaurants delivering Chinese dishes...",
+        style: TextStyle(
+            fontSize: 25,
+            color: Color(0xFF3a3a3b),
+            fontWeight: FontWeight.w300),
 
 
       ),
@@ -53,7 +53,7 @@ class BestFoodTitle extends StatelessWidget {
   }
 }
 
-class BestFoodTiles extends StatelessWidget {
+class BestFoodTiles3 extends StatelessWidget {
   String name;
   String imageUrl;
   String address;
@@ -62,15 +62,15 @@ class BestFoodTiles extends StatelessWidget {
   String price;
   String slug;
 
-  BestFoodTiles(
+  BestFoodTiles3(
       {Key key,
-      @required this.name,
-      @required this.imageUrl,
-      @required this.address,
-      @required this.rating,
-      @required this.numberOfRating,
-      @required this.price,
-      @required this.slug})
+        @required this.name,
+        @required this.imageUrl,
+        @required this.address,
+        @required this.rating,
+        @required this.numberOfRating,
+        @required this.price,
+        @required this.slug})
       : super(key: key);
 
   @override
@@ -139,30 +139,24 @@ class BestFoodTiles extends StatelessWidget {
   }
 }
 
-class BestFoodList extends StatelessWidget {
+class BestFoodList3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
       children: <Widget>[
-        BestFoodTiles(
-            name: "Arsalan",
-            imageUrl: "ic_best_food_1",
-            rating: '4.9',
-            price: 'South Dumdum,Kolkata  \n\u{20B9}600 for Two ',
-            slug: "fried_egg"),
-        BestFoodTiles(
-            name: "Barbeque Nation",
-            imageUrl: "ic_best_food_10",
-            rating: "4.0",
-            numberOfRating: "50",
-            price: "Park Street,Kolkata  \n\u{20B9}1600 for Two",
+        BestFoodTiles3(
+            name: "Noodle Oodle",
+            imageUrl: "ic_best_food_3",
+            rating: "4.2",
+            price: "South Dumdum,Kolkata  \n\u{20B9}1000 for Two",
             slug: ""),
-        BestFoodTiles(
-            name: "Tandoor House",
-            imageUrl: "ic_best_food_4",
-            rating: '4.9',
-            price: 'Ballygunj,Kolkata  \n\u{20B9}500 for Two',
-            slug: "fried_egg"),
+        BestFoodTiles3(
+            name: "Chopstick",
+            imageUrl: "ic_best_food_9",
+            rating: "4.9",
+            price: "Behala,Kolkata \n\u{20B9}400 for Two",
+            slug: ""),
+
       ],
     );
   }

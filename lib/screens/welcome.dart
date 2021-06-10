@@ -1,3 +1,4 @@
+import 'package:eato/annimations/ScaleRoute.dart';
 import 'package:eato/widgets/background-image.dart';
 import 'package:eato/widgets/widgets.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -23,7 +24,7 @@ class WelcomeScreen extends StatelessWidget {
               body: SingleChildScrollView(
                 child: Container(
                   margin: EdgeInsets.only(left:30.0),
-                  height: 800,
+                  height: 950,
                   child: Column(crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
 
@@ -94,7 +95,7 @@ class WelcomeScreen extends StatelessWidget {
   void performRouting(BuildContext context) {
     SessionManagement.getLoginStatus().then((value) {
       if (value)
-        Navigator.pushReplacementNamed(context, 'Homepage');
+        Navigator.pushReplacementNamed(context,'Homepage');
       else
         Navigator.pushReplacementNamed(context, 'LoginScreen');
     }).catchError((onError) => print(onError));

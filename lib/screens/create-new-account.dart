@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:eato/widgets/confirmPassword-input.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -20,6 +21,7 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
   final TextEditingController _emailCtrl = TextEditingController();
 
   final TextEditingController _passCtrl = TextEditingController();
+  final TextEditingController _confirmpassCtrl = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -75,11 +77,14 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
                         inputAction: TextInputAction.next,
                         controller: _passCtrl,
                       ),
-                      PasswordInput(
+                      ConfirmPasswordInput(
                         icon: FontAwesomeIcons.lock,
                         hint: 'Confirm Password',
                         inputAction: TextInputAction.done,
+                        controller: _confirmpassCtrl,
+                        contcheck:_passCtrl,
                       ),
+
                       SizedBox(
                         height: 25,
                       ),
@@ -169,15 +174,16 @@ class _CreateNewAccountState extends State<CreateNewAccount> {
     Map<String, dynamic> userDetails = {
       'name': name,
       'email': email,
-      'desc': 'nothing to share ',
       'image': "",
+      'phone' : "",
+      'address': "",
     };
     await FirebaseFirestore.instance
         .collection('users')
         .doc(uid)
         .set(userDetails)
         .then((_) { notifyUser(context, 'user registered');
-    Navigator.pushReplacementNamed(context,'Homepage');})
+    Navigator.pushReplacementNamed(context,'LoginScreen');})
         .catchError((onError) => notifyUser(context, onError));
   }
 }

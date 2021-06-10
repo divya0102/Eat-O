@@ -135,9 +135,9 @@ class _LoginScreenState extends State<LoginScreen> {
           notifyUser(context, 'Need to verify email');
         }
       } on FirebaseAuthException catch (e) {
-        if (e.code == 'user not found') {
+        if (e.code == 'user-not-found') {
           notifyUser(context, 'No user found for that email');
-        } else if (e.code == 'wrong password') {
+        } else if (e.code == 'wrong-password') {
           notifyUser(context, 'Password Incorrect!');
         }
       }

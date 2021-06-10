@@ -1,10 +1,11 @@
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SessionManagement {
   static SharedPreferences sharedPref;
   static const String KEY_UID = 'uid';
   static const String KEY_EMAIL = 'email';
+  static const String KEY_NAME = 'name';
   static const String KEY_LOGGED = 'isLogin';
 
   static void storeUserCredentials(String email) async {
@@ -34,4 +35,9 @@ class SessionManagement {
     sharedPref = await SharedPreferences.getInstance();
     return sharedPref.clear();
   }
+  static Future<String> getLoginName(uid) async {
+    sharedPref = await SharedPreferences.getInstance();
+    return sharedPref.getString(KEY_NAME) ?? '';
+  }
+
 }

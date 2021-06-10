@@ -1,5 +1,6 @@
 import 'package:eato/pallete.dart';
 import 'package:eato/screens/Restaurant1.dart';
+import 'package:eato/screens/screens.dart';
 import 'package:flutter/material.dart';
 import'package:search_widget/search_widget.dart';
 class search extends StatefulWidget{
@@ -60,6 +61,25 @@ class _searchState extends State<search> {
     @override
     Widget build(BuildContext context) {
       return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Color(0xFFFAFAFA),
+          elevation: 0,
+          title: Text(
+            "What would you like to eat?",
+            style: TextStyle(
+                color: Color(0xFF3a3737),
+                fontSize: 16,
+                fontWeight: FontWeight.w500),
+          ),
+          leading: Image.asset(
+            'assets/images/logo1.png',
+            fit: BoxFit.contain,
+          ),
+          brightness: Brightness.light,
+          actions: <Widget>[
+            PopupOptionMenu(),
+          ],
+        ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(vertical: 16),
           child: Column(

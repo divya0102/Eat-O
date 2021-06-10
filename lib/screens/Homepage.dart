@@ -1,5 +1,5 @@
 //import 'dart:js';
-
+import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:eato/pallete.dart';
 import 'package:eato/screens/SessionMnagement.dart';
 import 'package:eato/screens/login-screen.dart';
@@ -16,28 +16,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   String screenTitle = '1st Screen';
   int _selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xFFFAFAFA),
-        elevation: 0,
-        title: Text(
-          "What would you like to eat?",
-          style: TextStyle(
-              color: Color(0xFF3a3737),
-              fontSize: 16,
-              fontWeight: FontWeight.w500),
-        ),
-        leading: Image.asset(
-          'assets/images/logo1.png',
-          fit: BoxFit.contain,
-        ),
-        brightness: Brightness.light,
-        actions: <Widget>[
-          PopupOptionMenu(),
-        ],
-      ),
       body: LocalData.bottomNavList[_selectedIndex]['screen'],
       bottomNavigationBar: BottomNavBarWidget(),
     );
@@ -61,19 +43,19 @@ class _HomePageState extends State<HomePage> {
           // ignore: deprecated_member_use
           label: LocalData.bottomNavList[1]['title'],
         ),
-        BottomNavigationBarItem(
+       /* BottomNavigationBarItem(
           icon: Icon(Icons.card_giftcard),
 
           // ignore: deprecated_member_use
           label: LocalData.bottomNavList[2]['title'],
-        ),
+        ),*/
         BottomNavigationBarItem(
           icon: Icon(
             FontAwesomeIcons.user,
           ),
 
           // ignore: deprecated_member_use
-          label: LocalData.bottomNavList[3]['title'],
+          label: LocalData.bottomNavList[2]['title'],
         ),
       ],
       selectedItemColor: Color(0xFFfd5757),
@@ -91,15 +73,28 @@ enum MenuOption { MyOrders, TermsAndConditions, Feedback,OurTeam,LogOut }
 
 class PopupOptionMenu extends StatelessWidget {
   const PopupOptionMenu({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton<MenuOption>(
-      icon: Icon(Icons.delivery_dining,
+      icon: Icon(Icons.menu,color: Colors.grey[700],
       ),
 
-      onSelected: (v){
+      onSelected: (v) async {
         if(v == MenuOption.LogOut)
           showNotifier(context);
+        else if(v==MenuOption.OurTeam)
+          Navigator.pushNamed(context,'OurTeam');
+        else if(v==MenuOption.Feedback)
+          {
+            final Email email=Email(
+              body: 'Email body',
+              subject: 'Subject',
+              recipients: ['divyakumari0102@gmail.com'],
+              isHTML: false,
+            );
+            await FlutterEmailSender.send(email);
+          }
       },
       itemBuilder: (con) {
         return <PopupMenuEntry<MenuOption>>[
@@ -108,7 +103,8 @@ class PopupOptionMenu extends StatelessWidget {
                 crossAxisAlignment:WrapCrossAlignment.center,
                 runSpacing:20,
                 children: [
-                  Icon(Icons.shopping_bag_outlined),
+                  Icon(Icons.shopping_bag_outlined,
+                  color:Colors.grey[700],size: 20,),
                   Text('  My Orders'),
                 ]
             ),
@@ -119,7 +115,7 @@ class PopupOptionMenu extends StatelessWidget {
                 crossAxisAlignment:WrapCrossAlignment.center,
                 runSpacing:20,
                 children: [
-                  Icon(Icons.mail_outline_sharp),
+                  Icon(Icons.mail_outline_sharp,color:Colors.grey[700],size: 20,),
                   Text('  Feedback'),
                 ]
             ),
@@ -130,7 +126,7 @@ class PopupOptionMenu extends StatelessWidget {
                 crossAxisAlignment:WrapCrossAlignment.center,
                 runSpacing:20,
                 children: [
-                  Icon(Icons.event_note_outlined),
+                  Icon(Icons.event_note_outlined,color:Colors.grey[700],size: 20,),
                   Text('  Terms and Conditions'),
                 ]
             ),
@@ -141,7 +137,7 @@ class PopupOptionMenu extends StatelessWidget {
                 crossAxisAlignment:WrapCrossAlignment.center,
                 runSpacing:20,
                 children: [
-                  Icon(Icons.group_outlined),
+                  Icon(Icons.group_outlined,color:Colors.grey[700],size: 20,),
                   Text('  Our Team'),
                 ]
             ),
@@ -153,7 +149,7 @@ class PopupOptionMenu extends StatelessWidget {
                 crossAxisAlignment:WrapCrossAlignment.center,
                 runSpacing:20,
                 children: [
-                  Icon(Icons.logout),
+                  Icon(Icons.logout,color:Colors.grey[700],size: 20,),
                   Text('  LogOut'),
                 ]
             ),

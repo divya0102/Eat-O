@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:eato/pallete.dart';
 
-class PasswordInput extends StatelessWidget {
-  const PasswordInput({
+class ConfirmPasswordInput extends StatelessWidget {
+  const ConfirmPasswordInput({
     Key key,
     @required this.icon,
     @required this.hint,
     @required this.controller,
+    @required this.contcheck,
     this.inputType,
     this.inputAction,
   }) : super(key: key);
@@ -16,6 +17,7 @@ class PasswordInput extends StatelessWidget {
   final TextInputType inputType;
   final TextInputAction inputAction;
   final TextEditingController controller;
+  final TextEditingController contcheck;
 
   @override
   Widget build(BuildContext context) {
@@ -52,10 +54,12 @@ class PasswordInput extends StatelessWidget {
             validator: (String input) {
               if (input.isEmpty)
                 return 'please enter a password';
-              else if (input.length < 5)
-                return 'Password must be of atleast 5 characters';
+              else if (contcheck.text!= controller.text){
+                return "Password does not match.";
+              }
               return null;
             },
+
             controller: controller,
           ),
         ),

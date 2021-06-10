@@ -1,3 +1,4 @@
+import 'package:eato/screens/cart.dart';
 import 'package:eato/screens/screens.dart';
 import 'package:eato/screens/search.dart';
 class LocalData{
@@ -10,15 +11,10 @@ class LocalData{
     'screen': search(),
     'title':'Search',
   },
-  {
-    'screen': FoodOrderPage(),
-    'title':'Cart',
-  },
     {
       'screen': Account(),
       'title':'Account',
     },
 
-
-];
+  ];
 }

@@ -1,4 +1,5 @@
 //import 'package:eato/widgets/SearchWidget.dart';
+import 'package:eato/screens/screens.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:eato/widgets/widgets.dart';
@@ -17,6 +18,25 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xFFFAFAFA),
+        elevation: 0,
+        title: Text(
+          "What would you like to eat?",
+          style: TextStyle(
+              color: Color(0xFF3a3737),
+              fontSize: 16,
+              fontWeight: FontWeight.w500),
+        ),
+        leading: Image.asset(
+          'assets/images/logo1.png',
+          fit: BoxFit.contain,
+        ),
+        brightness: Brightness.light,
+        actions: <Widget>[
+          PopupOptionMenu(),
+        ],
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
